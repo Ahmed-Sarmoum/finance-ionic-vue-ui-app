@@ -5,7 +5,7 @@
         <ion-avatar>
           <img src="@/assets/imgs/img.png" />
         </ion-avatar>
-        <ion-label color="primary">Nikhil Agarwal</ion-label>
+        <ion-label color="primary">Ahmed SARMOUM</ion-label>
       </div>
       <ion-list>
         <ion-item lines="full">
