@@ -1,5 +1,4 @@
 <template>
-  <!-- Vue.js equivalent code for the ion-header -->
   <ion-page>
     <ion-header class="ion-no-border">
       <ion-toolbar color="primary">
@@ -7,7 +6,7 @@
           <ion-label>
             <ion-text color="tertiary">Welcome</ion-text>
             <p>
-              <ion-text color="white"><strong>Ahmed SARMOUM.</strong></ion-text>
+              <ion-text color="white"><strong>Ahmed SARMOUM</strong></ion-text>
             </p>
           </ion-label>
         </ion-title>
@@ -17,10 +16,8 @@
       </ion-toolbar>
     </ion-header>
 
-    <!-- Vue.js equivalent code for the ion-content -->
     <ion-content color="primary">
       <ion-row class="banners">
-        <!-- Vue.js equivalent code for the swiper and ngFor loop -->
         <swiper
           :modules="swiperModules"
           :slidesPerView="1"
@@ -60,41 +57,58 @@
           <ion-label color="medium">Transactions</ion-label>
         </ion-list-header>
         <ion-item-group>
-          <!-- Vue.js equivalent code for the ion-list and ngFor loop -->
-          <ion-item
-            lines="full"
-            v-for="transaction in transactions"
+           <ion-item-sliding 
+             v-for="transaction in transactions"
             :key="transaction.to"
             @click="selectTrans(transaction)"
-          >
-            <ion-thumbnail slot="start" class="ion-text-center">
-              <img
-                v-if="transaction.amount >= 0"
-                src="@/assets/imgs/up-right.png"
-                alt="Transaction Icon"
-              />
-              <img
-                v-else
-                src="@/assets/imgs/down-left-arrow.png"
-                alt="Transaction Icon"
-              />
-            </ion-thumbnail>
-            <ion-label>
-              <ion-text color="primary">{{ transaction.to }}</ion-text>
-              <p>
-                <ion-text color="primary">{{
-                  new Date(transaction.date).toLocaleDateString()
-                }}</ion-text>
-              </p>
-            </ion-label>
-            <ion-text slot="end" color="primary">
-              {{
-                transaction.amount >= 0
-                  ? "₹" + transaction.amount
-                  : "₹" + -transaction.amount
-              }}
-            </ion-text>
-          </ion-item>
+           >
+            <ion-item-options side="start">
+              <ion-item-option color="success">
+                <ion-icon slot="icon-only" :icon="archive"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+              <ion-item
+                lines="full"
+              >
+                <ion-thumbnail slot="start" class="ion-text-center">
+                  <img
+                    v-if="transaction.amount >= 0"
+                    src="@/assets/imgs/up-right.png"
+                    alt="Transaction Icon"
+                  />
+                  <img
+                    v-else
+                    src="@/assets/imgs/down-left-arrow.png"
+                    alt="Transaction Icon"
+                  />
+                </ion-thumbnail>
+                <ion-label>
+                  <ion-text color="primary">{{ transaction.to }}</ion-text>
+                  <p>
+                    <ion-text color="primary">{{
+                      new Date(transaction.date).toLocaleDateString()
+                    }}</ion-text>
+                  </p>
+                </ion-label>
+                <ion-text slot="end" color="primary">
+                  {{
+                    transaction.amount >= 0
+                      ? "₹" + transaction.amount
+                      : "₹" + -transaction.amount
+                  }}
+                </ion-text>
+              </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option>
+                <ion-icon slot="icon-only" :icon="heart"></ion-icon>
+              </ion-item-option>
+              <ion-item-option color="danger">
+                <ion-icon slot="icon-only" :icon="trash"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
         </ion-item-group>
       </ion-list>
     </ion-content>
@@ -104,13 +118,15 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import { paperPlane, send, addCircle, newspaper, card } from "ionicons/icons";
+import { paperPlane, send, addCircle, newspaper, card, heart, trash, archive } from "ionicons/icons";
 
 import {
   IonListHeader,
   IonItemGroup,
   IonItem,
   IonList,
+  IonItemOption,
+  IonItemSliding 
 } from "@ionic/vue";
 import { ref } from "vue";
 

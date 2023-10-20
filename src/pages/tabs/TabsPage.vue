@@ -12,6 +12,7 @@
             "
           ></ion-icon>
         </ion-tab-button>
+
         <ion-tab-button
         @click="setCurrentTab('transactions')"
           :tab="reactiveState.tabs.transactions"
@@ -25,6 +26,7 @@
             "
           ></ion-icon>
         </ion-tab-button>
+
         <ion-tab-button
           @click="setCurrentTab('card')"
           :tab="reactiveState.tabs.card" href="/tabs/card"
@@ -37,6 +39,7 @@
             "
           ></ion-icon>
         </ion-tab-button>
+
         <ion-tab-button
           @click="setCurrentTab('settings')"
           :tab="reactiveState.tabs.settings"
@@ -50,6 +53,7 @@
             "
           ></ion-icon>
         </ion-tab-button>
+        
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
